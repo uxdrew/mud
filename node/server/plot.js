@@ -20,7 +20,7 @@ function createGraph(data, callback) {
         let plotly = require('plotly')("jw26", "gpIgCapFt6NFnboLCgwB");
 
         plotly.plot(translatedData, graphOptions, function (err, msg) {
-            callback(null,msg);
+            callback(null,msg,translatedData);
         });
     });
 }

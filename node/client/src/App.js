@@ -8,7 +8,9 @@ class App extends Component {
       trace : { x:[1,2,3], y:[1,2,3]}, type: 'scatter',
       mode: 'lines+points',
       marker: {color: 'red'},
-      layout:{width: 320, height: 240, title: 'A Fancy Plot'}};
+      layout:{showlegend:true, legend: {
+          x: .5,
+            y: 1.25}}};
 
   constructor(props) {
       super(props);
@@ -28,10 +30,8 @@ class App extends Component {
         {this.state.graphs.map(graph =>
 
             <div>
-                <iframe  width="900" height="800" frameBorder="0" scrolling="no" src={graph.url}></iframe>
-
                 <Plot
-                    data={this.state.data}
+                    data={graph.data}
                     layout={this.state.layout}
                 />
             </div>
