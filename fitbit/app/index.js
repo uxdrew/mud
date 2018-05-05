@@ -80,7 +80,11 @@ function sendMessage(obj) {
 
 function moodClick(mood) {
   console.log('moodClick() called - ' + mood);
-  sendMessage({ hr: hrLabel.text, mood: mood });
+  var date = new Date(Date.now())
+  console.log(date);
+  var timestamp = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear() + ' ' + date.getHours();
+  console.log("timestamp: " + timestamp);
+  sendMessage({ hr: hrLabel.text, mud: mood, user: 'alec', timestamp: timestamp });
   moodPrompt.style.display = "none";
 }
 
