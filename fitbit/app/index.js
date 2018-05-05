@@ -65,8 +65,9 @@ messaging.peerSocket.onmessage = (evt) => {
   console.log(JSON.stringify(evt.data));
   if(evt.data.key == "moodPrompt")
   {
-      console.log("moodPrompt app message received");
-      moodPrompt.style.display = "inline";
+    console.log("moodPrompt app message received");
+    moodPrompt.style.display = "inline";
+    vibration.start("ping");
   }
 }
 

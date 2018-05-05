@@ -27,6 +27,7 @@ function sendMessage() {
 // Settings have been changed
 settingsStorage.onchange = function(evt) {
   console.log("settings storage onchange called");
+  settingsStorage.setItem('moodPrompt', 'false');
   sendValue(evt.key, evt.newValue);
 }
 
