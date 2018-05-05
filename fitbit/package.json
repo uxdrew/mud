@@ -1,0 +1,21 @@
+{
+  "fitbit": {
+    "appUUID": "bd81b98a-5e86-4df7-a519-9e2d45b6e70f",
+    "appType": "clockface",
+    "appDisplayName": "Müd",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "",
+    "requestedPermissions": [
+      "access_heart_rate"
+    ],
+    "buildTargets": [
+      "higgs",
+      "meson"
+    ],
+    "i18n": {
+      "en": {
+        "name": "Müd"
+      }
+    }
+  }
+}
