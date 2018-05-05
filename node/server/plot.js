@@ -1,27 +1,8 @@
 function createGraph(data, callback) {
 
-
-    let graphFileName = data[0] ? data[0].user : "No Mood Data for User";
-
     translateData(data, function(err, translatedData) {
+        callback(null,translatedData);
 
-        //todo populate legend with legendData basd on plotly docs
-        let layout = {
-            showlegend: true,
-            legend: {
-                x: .5,
-                y: 1.25
-            }
-        };
-
-        let graphOptions = {layout : layout, filename: graphFileName, fileopt: "overwrite"};
-
-        //create plot
-        let plotly = require('plotly')("jw26", "gpIgCapFt6NFnboLCgwB");
-
-        plotly.plot(translatedData, graphOptions, function (err, msg) {
-            callback(null,msg,translatedData);
-        });
     });
 }
 
@@ -80,15 +61,8 @@ function translateData(originalData, callback) {
 
     originalData.forEach(function(element) {
 
-
-        //store date in y axis
-        // yData.push(element.date);
-
         //convert 24 hour time
         let twelveHourTime = element.hour > 12 ? (element.hour - 12) + 'pm' : element.hour + 'am';
-
-        //store hour in x axis
-        // xData.push(twelveHourTime);
 
         //yellow for happy, blue for sad, grey for neutral
         let happyColor =  '(hsl(52, 97, 52)';
