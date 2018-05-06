@@ -91,7 +91,7 @@ function moodClick(mood) {
     console.log(date);
     var timestamp = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear() + ' ' + date.getHours();
     console.log("timestamp: " + timestamp);
-    sendMessage({ hr: hrLabel.text, mud: mood, user: 'Jeff', timestamp: timestamp });
+    sendMessage({ hr: hrLabel.text, mud: mood, user: 'Drew', timestamp: timestamp });
     vibration.start("bump");
     moodPrompt.animate("disable");
     //moodPrompt.style.display = "none";
