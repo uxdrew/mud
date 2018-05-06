@@ -24,15 +24,15 @@
           <arc x="35%-2" y="60%" width="60" height="60" fill="black" arc-width="9" start-angle="270" sweep-angle="180" />
         </use>
       </section>  
-      <animate attributeName="opacity" begin="enable" from="0" to="1" dur="1" />
-      <animate attributeName="opacity" begin="disable" from="1" to="0" dur="1" />
+      <animate attributeName="opacity" begin="enable" from="0" to="1" dur="0" />
+      <animate attributeName="opacity" begin="disable" from="1" to="0" dur="0" />
     </symbol>
     <!-- checkmark definition -->
     <symbol id="checkmark" opacity="0">
       <g transform="translate(5%,5%)" id="g-flower">
         <image x="$" y="$" width="20" height="20" href="check.png" load="sync" />
       </g>
-      <animate attributeName="opacity" begin="enable" from="0" to="1" dur="2" />
+      <animate attributeName="opacity" begin="enable" from="0" to="1" dur="0" />
       <animate attributeName="opacity" begin="enable+2" from="1" to="0" dur="1" />
     </symbol>
   </defs>
