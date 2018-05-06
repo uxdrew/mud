@@ -4,9 +4,7 @@ import Plot from 'react-plotly.js';
 
 class App extends Component {
   state = {graphs : [], userId : "alec",
-      layout:{hovermode: false, showlegend:true, legend: {
-          x: .5,
-            y: 1.25}}};
+      layout:{ hovermode: false, showlegend:false}};
 
   componentDidMount() {
     fetch('/graph?user=' + this.state.userId)

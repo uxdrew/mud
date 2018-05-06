@@ -11,10 +11,7 @@ function createGraph(data, callback) {
 function translateData(originalData, callback) {
 
     let xDataHappy = [], yDataHappy = [],
-        xDataSad = [] , yDataSad = [],
-        xDataNeutral = [], yDataNeutral = [],
-         sizeData = [], colorDataHappy = [],
-         colorDataSad = [], colorDataNeutral = [];
+         sizeData = [], colorDataHappy = [];
 
     let sadCount = 0, happyCount = 0, neutralCount = 0;
 
@@ -26,6 +23,7 @@ function translateData(originalData, callback) {
     let newData = originalData.groupBy('date');
 
     let expectedHours =  ["8", "10", "12", "14"];
+
 
     //group by date, then check if any mood recordings
     //were missed, if so, add them as missed data points
@@ -46,20 +44,37 @@ function translateData(originalData, callback) {
                     mud: "missed",
                     date : key,
                     hour : element,
-                })
+                });
                 neutralCount += 1;
             })
-
         }
     }
 
-
-    //sort time by hour
-    originalData.sort(function(a,b) {
-        return a.hour - b.hour;
+    //sort again after the addition of neutral moods
+    let x = originalData.groupBy('date');
+    let y = [];
+    for (let key in x) {
+        if (x.hasOwnProperty(key)) {
+            y.push(x[key])
+        }
+    }
+    y.sort(function(a,b){
+        return Date.parse(a[0].date) > Date.parse(b[0].date);
     });
 
-    originalData.forEach(function(element) {
+    let final = [];
+
+    y.forEach(function(element) {
+        element.sort(function(a,b) {
+            return Number(a.hour) > Number(b.hour);
+        });
+
+        element.forEach(function(elem) {
+            final.push(elem);
+        })
+    });
+
+    final.forEach(function(element) {
 
         //convert 24 hour time
         let twelveHourTime = element.hour > 12 ? (element.hour - 12) + 'pm' : element.hour + 'am';
@@ -71,22 +86,22 @@ function translateData(originalData, callback) {
 
         if(element.mud === 'happy') {
             colorDataHappy.push(happyColor);
-            xDataHappy.push(twelveHourTime);
-            yDataHappy.push(element.date);
+
         } else if (element.mud === 'sad') {
-            colorDataSad.push(sadColor);
-            xDataSad.push(twelveHourTime);
-            yDataSad.push(element.date);
+            colorDataHappy.push(sadColor);
+
         } else {
-            colorDataNeutral.push(neutralColor);
-            xDataNeutral.push(twelveHourTime);
-            yDataNeutral.push(element.date);
+            colorDataHappy.push(neutralColor);
+
         }
+        xDataHappy.push(element.date);
+        yDataHappy.push(twelveHourTime);
 
         //add default size for any mood
        sizeData.push('42');
 
     });
+
 
     let happy = {
         y: yDataHappy,
@@ -96,35 +111,13 @@ function translateData(originalData, callback) {
 
             color: colorDataHappy,
             size: sizeData,
+            symbol: "square",
         },
         name : "Happy " + happyCount,
-        type: "scatter"
-    };
-    let sad = {
-        y: yDataSad,
-        x: xDataSad,
-        mode: "markers",
-        marker: {
-            color: colorDataSad,
-            size: sizeData,
-        },
-        name : "Sad " + sadCount,
-        type: "scatter"
+        type: "scatter",
     };
 
-    let neutral = {
-        y: yDataNeutral,
-        x: xDataNeutral,
-        mode: "markers",
-        marker: {
-            color: colorDataNeutral,
-            size: sizeData,
-        },
-        name: "Neutral " + neutralCount,
-        type: "scatter"
-    };
-
-    let translatedData = [happy,sad,neutral];
+    let translatedData = [happy];
 
 
     callback(null,translatedData);
@@ -145,5 +138,8 @@ Array.prototype.diff = function(a) {
         return a.indexOf(i) < 0;
     });
 };
+
+
+
 
 module.exports = createGraph;
