@@ -15,7 +15,9 @@ clock.granularity = "seconds";
 const myClock = document.getElementById("myClock");
 var gFlower = document.getElementById("g-flower");
 
-var moodPrompt = document.getElementById("mood-prompt");
+var moodPrompt = document.getElementById("mood-prompt-instance");
+
+var checkmark = document.getElementById("checkmark-instance");
 
 //vibration.start("ping");
 
@@ -60,13 +62,17 @@ messaging.peerSocket.onerror = (err) => {
   console.log(`Connection error: ${err.code} - ${err.message}`);
 }
 
+var moodPromptEnabled = false;
+
 messaging.peerSocket.onmessage = (evt) => {
   console.log('App msg received - ' + evt.data.key);
   console.log(JSON.stringify(evt.data));
   if(evt.data.key == "moodPrompt")
   {
     console.log("moodPrompt app message received");
-    moodPrompt.style.display = "inline";
+    //moodPrompt.style.display = "inline";
+    moodPromptEnabled = true;
+    moodPrompt.animate("enable");
     vibration.start("ping");
   }
 }
@@ -79,13 +85,20 @@ function sendMessage(obj) {
 }
 
 function moodClick(mood) {
-  console.log('moodClick() called - ' + mood);
-  var date = new Date(Date.now())
-  console.log(date);
-  var timestamp = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear() + ' ' + date.getHours();
-  console.log("timestamp: " + timestamp);
-  sendMessage({ hr: hrLabel.text, mud: mood, user: 'Jeff', timestamp: timestamp });
-  moodPrompt.style.display = "none";
+  if(moodPromptEnabled) {
+    console.log('moodClick() called - ' + mood);
+    var date = new Date(Date.now())
+    console.log(date);
+    var timestamp = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear() + ' ' + date.getHours();
+    console.log("timestamp: " + timestamp);
+    sendMessage({ hr: hrLabel.text, mud: mood, user: 'Jeff', timestamp: timestamp });
+    vibration.start("bump");
+    moodPrompt.animate("disable");
+    //moodPrompt.style.display = "none";
+    moodPromptEnabled = false;
+    
+    checkmark.animate("enable");
+  }
 }
 
 var happyButton = document.getElementById("happy-button");

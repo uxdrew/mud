@@ -1,7 +1,7 @@
 import * as messaging from "messaging";
 import { settingsStorage } from "settings";
 
-var ENDPOINT = "https://polite-wasp-41.localtunnel.me";
+var ENDPOINT = "https://wonderful-snake-18.localtunnel.me";
 
 messaging.peerSocket.onopen = () => {
   console.log("Ready");
