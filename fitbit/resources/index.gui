@@ -1,12 +1,11 @@
 <svg viewport-fill="black">
-  <image x="80%" y="10" width="24" height="24" href="hr.png" load="sync" />
-  <text id="hr" x="90%+8" y="30" fill="fb-white" font-size="20" font-family="System-Regular" text-anchor="middle" text-length="3">--</text>
+  <image x="81%" y="13" width="24" height="21" href="hr.png" load="sync" />
+  <text id="hr" x="90%+10" y="30" fill="fb-white" font-size="20" font-family="System-Regular" text-anchor="middle" text-length="3">--</text>
   <g pointer-events="visible" transform="translate(50%,28%)" id="g-flower">
     <image x="$-45" y="$-45" width="90" height="90" href="flower.png" load="sync" />
   </g>
   <text id="myClock" x="50%" y="80%+35" fill="fb-mint" font-size="152" font-family="Seville-Book" text-anchor="middle" text-length="20">--:--</text>
 
-  
   <!-- mood picker -->
   <svg id="mood-prompt-svg">
     <use id="mood-prompt-instance" href="#mood-prompt" width="100%" height="100%" />
