@@ -11,7 +11,9 @@ function getUserDataByName(username) {
 
     }).then(function(db){
         let query = {user : username};
-        return db.db(dbName).collection(dbCollection).find(query).toArray();
+        let returnValue =  db.db(dbName).collection(dbCollection).find(query).toArray();
+        db.close();
+        return returnValue;
 
     }).then(function(result) {
         return createGraph(result);
@@ -30,9 +32,11 @@ function save(data) {
         resolve( MongoClient.connect(url));
 
     }).then(function(db) {
-        return db.db(dbName).collection(dbCollection).insertOne(data);
+        let returnValue = db.db(dbName).collection(dbCollection).insertOne(data);
+        db.close();
+        return returnValue;
     }).then(function(res) {
-        console.log('\n  Mood record added!');
+        console.log('\n  Mood record added!\n');
     })
 
 }

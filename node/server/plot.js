@@ -1,42 +1,26 @@
 
-
+const happyColor = 'hsl(55.4, 94, 54.1)'; //yellow
+const sadColor = 'hsl(212.2, 31.8, 57.5)'; //blue
+const neutralColor = 'hsl(0, 0, 77)'; //grey
+const expectedHours =  ["8", "10", "12", "14"];
 function createGraph(originalData) {
 
-    //yellow for happy, blue for sad, grey for neutral
-    const happyColor = 'hsl(55.4, 94, 54.1)';
-    const sadColor = 'hsl(212.2, 31.8, 57.5)';
-    const neutralColor = 'hsl(0, 0, 77)';
-
-    let sadCount = 0, happyCount = 0, neutralCount = 0;
-
-    originalData.forEach(function(element) {
-       element.mud === 'happy' ? happyCount += 1 : sadCount +=1;
-    });
-
-
     let groupedByDate = originalData.groupBy('date');
-
-    let expectedHours =  ["8", "10", "12", "14"];
-
 
     //group by date, then check if any mood recordings
     //were missed, if so, add them as missed data points
     for (let key in groupedByDate) {
         if (groupedByDate.hasOwnProperty(key)) {
 
-            let hours = groupedByDate[key].map(x => x.hour);
-
-            let missingHours = expectedHours.diff(hours);
-
-            missingHours.forEach(function(element){
-                originalData.push({
+            expectedHours.diff(groupedByDate[key].map(x => x.hour))
+                .map(elem => {
+                    originalData.push({
                     user: originalData[0] ? originalData[0].user : 'no user found',
                     mud: "missed",
                     date : key,
-                    hour : element,
+                    hour : elem,
                 });
-                neutralCount += 1;
-            })
+            });
         }
     }
 
@@ -48,6 +32,7 @@ function createGraph(originalData) {
             y.push(x[key])
         }
     }
+
     y.sort(function(a,b){
         return Date.parse(a[0].date) > Date.parse(b[0].date);
     });
@@ -89,7 +74,7 @@ function createGraph(originalData) {
 
     });
 
-    let happy = {
+    let data = {
         y: yDataHappy,
         x: xDataHappy.map(x => x.substring(0, x.lastIndexOf('/'))),
         mode: "markers",
@@ -101,7 +86,7 @@ function createGraph(originalData) {
         },
         type: "scatter",
     };
-    let happySmaller = {
+    let dataOverlay = {
         y: yDataHappy,
         x: xDataHappy.map(x => x.substring(0, x.lastIndexOf('/'))),
         mode: "markers",
@@ -114,18 +99,10 @@ function createGraph(originalData) {
         type: "scatter",
     };
 
-    let moodData = [happy,happySmaller];
-
-    let count = {
-        happy: happyCount,
-        sad: sadCount,
-        neutral: neutralCount
-    };
-
+    let moodData = [data,dataOverlay];
 
     let ret = [
         {data: moodData,
-        count: count,
             layout:{  hovermode: false,
                 showlegend:false,
                 title: "Mood Activity",
@@ -166,9 +143,9 @@ function createGraph(originalData) {
 
 
     ];
-    return new Promise(function(resolve, reject) {
+    return new Promise(function(resolve) {
         resolve(ret);
-        });
+    });
 }
 
 //helper functions
@@ -186,9 +163,5 @@ Array.prototype.diff = function(a) {
         return a.indexOf(i) < 0;
     });
 };
-
-const monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-];
 
 module.exports = createGraph;
