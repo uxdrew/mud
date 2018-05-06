@@ -16,7 +16,7 @@ mongod must be running for server and client to function.
 
 Note that both server must be running for the client to operate.
 
-### Start the backend api communicates with `mongodb`
+### Start the backend api that communicates with `mongodb`
 
 In `/node/server` do `npm install`
 
