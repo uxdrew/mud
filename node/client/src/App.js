@@ -4,7 +4,12 @@ import Plot from 'react-plotly.js';
 
 class App extends Component {
   state = {graphs : [], userId : "alec",
-      layout:{ hovermode: false, showlegend:false}};
+      layout:{  hovermode: false,
+                showlegend:false,
+                // yaxis : {
+                //     mode: "linear"
+                // }
+      }};
 
   componentDidMount() {
     fetch('/graph?user=' + this.state.userId)
@@ -20,13 +25,15 @@ class App extends Component {
         {this.state.graphs.map(graph =>
 
             <div>
-                <h3>Happy: {graph.count.happy}</h3>
-                <h3>Sad: {graph.count.sad}</h3>
-                <h3>Neutral: {graph.count.neutral}</h3>
-                <Plot
-                    data={graph.data}
-                    layout={this.state.layout}
-                />
+              <ul>
+                  <li>Happy: {graph.count.happy}</li>
+                  <li>Sad: {graph.count.sad}</li>
+                  <li>Neutral: {graph.count.neutral}</li>
+              </ul>
+              <Plot
+                  data={graph.data}
+                  layout={graph.layout}
+              />
             </div>
         )}
       </div>

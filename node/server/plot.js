@@ -1,7 +1,7 @@
 function createGraph(data, callback) {
 
-    translateData(data, function(err, translatedData,count) {
-        callback(null,translatedData,count);
+    translateData(data, function(err, ret) {
+        callback(null,ret);
 
     });
 }
@@ -117,14 +117,63 @@ function translateData(originalData, callback) {
         type: "scatter",
     };
 
-    let translatedData = [happy];
+    let moodData = [happy];
 
     let count = {
         happy: happyCount,
         sad: sadCount,
         neutral: neutralCount
     };
-    callback(null,translatedData,count);
+
+    let hrData = [];
+    let hrDateTime = [];
+
+    final.forEach(function(element) {
+        if(element.mud === 'missed') {
+
+        } else {
+            hrData.push(Number(element.hr));
+            hrDateTime.push(element.date + " " + element.hour);
+        }
+    });
+
+
+    let hrTrace = {
+        y: hrData,
+        x: hrDateTime,
+        mode: "markers",
+        marker: {
+
+            color: colorDataHappy,
+            size: sizeData,
+            symbol: "square",
+        },
+        type: "scatter",
+    };
+    let hrPlot = [hrTrace];
+
+
+    let ret = [
+        {data: moodData,
+        count: count,
+            layout:{  hovermode: false,
+                showlegend:false,
+                // yaxis : {
+                //     mode: "linear"
+                // }
+            }
+        },
+        {data: hrPlot,
+        count: count,
+        layout:{  hovermode: false,
+        showlegend:false,
+        yaxis : {
+            mode: "linear"
+        }
+    }}
+
+    ];
+    callback(null,ret);
 }
 
 //helper functions
