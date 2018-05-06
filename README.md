@@ -38,6 +38,6 @@ Create a new project named whatever
 
 Drag the contents of `/fitbit/` to the left hand pane of Fitbit Studio.
 
-Follow the instructions in [Fitbit's Getting Started page](https://dev.fitbit.com/getting-started/) to run the app.
+Follow the instructions in [Fitbit's Getting Started page](https://dev.fitbit.com/getting-started/) to run the app in either the simulator or on a physical Fitbit Versa or Ionic.
 
 In `/companion/index.js` change the value of the `ENDPOINT` variable to whatever url your server is running under. If the Fitbit watch face is running in the simulator then you can use a localhost address. If running on actual hardware localhost may not be accessible. One possible solution is to use [localtunnel](https://localtunnel.github.io/www/) to create a publically accessible https endpoing to your localhost instance.
