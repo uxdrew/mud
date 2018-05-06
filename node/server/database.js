@@ -32,7 +32,7 @@ function save(data) {
     }).then(function(db) {
         return db.db(dbName).collection(dbCollection).insertOne(data);
     }).then(function(res) {
-        console.log('1 mud record inserted');
+        console.log('\n  Mood record added!');
     })
 
 }

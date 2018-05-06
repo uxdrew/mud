@@ -37,7 +37,10 @@ app.get('/graph', function(req,res) {
 });
 
 
-app.listen(port, () => console.log('App listening on port ' + port));
+app.listen(port, () => {
+    console.clear();
+    console.log("\nWelcome to Müd!\n\nYou'll see mood recordings here:\n")
+});
 
 
 
