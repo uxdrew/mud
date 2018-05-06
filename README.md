@@ -20,8 +20,17 @@ Let’s nip bad moods in the bud.
 * Alec Paulson
 * Jeff Wise
 
-## Demo
-![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/gitbub_demo.gif)
+## One-Tap-App
+<p align="center">
+  <img width="400" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/gitbub_demo.gif">
+</p>
+
+## Chart
+
+<p align="center">
+  <img width="400" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/chart.png">
+</p>
+
 
 # How To Run
 
