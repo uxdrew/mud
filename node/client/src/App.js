@@ -13,24 +13,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>{this.state.userId}</h1>
+      <body className="App">
 
         {this.state.graphs.map(graph =>
-
-            <div>
-              <ul>
-                  <li>Happy: {graph.count.happy}</li>
-                  <li>Sad: {graph.count.sad}</li>
-                  <li>Missed: {graph.count.neutral}</li>
-              </ul>
               <Plot
                   data={graph.data}
                   layout={graph.layout}
               />
-            </div>
         )}
-      </div>
+      </body>
     );
   }
 
