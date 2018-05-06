@@ -28,7 +28,7 @@ Let’s nip bad moods in the bud.
 ## Patient Mood Chart (web)
 
 <p align="center">
-  <img width="400" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/chart.png">
+  <img width="600" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/chart.png">
 </p>
 
 
