@@ -25,7 +25,7 @@ Let’s nip bad moods in the bud.
   <img width="400" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/gitbub_demo.gif">
 </p>
 
-## Chart
+## Patient Mood Chart
 
 <p align="center">
   <img width="400" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/chart.png">
