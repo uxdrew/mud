@@ -3,8 +3,8 @@
 function createGraph(originalData) {
 
     //yellow for happy, blue for sad, grey for neutral
-    const happyColor =  '(hsl(52, 97, 52)';
-    const sadColor = 'hsl(210, 79, 30)';
+    const happyColor = 'hsl(55.4, 94, 54.1)';
+    const sadColor = 'hsl(212.2, 31.8, 57.5)';
     const neutralColor = 'hsl(0, 0, 77)';
 
     let sadCount = 0, happyCount = 0, neutralCount = 0;
@@ -30,7 +30,7 @@ function createGraph(originalData) {
 
             missingHours.forEach(function(element){
                 originalData.push({
-                    user: originalData[0].user,
+                    user: originalData[0] ? originalData[0].user : 'no user found',
                     mud: "missed",
                     date : key,
                     hour : element,
@@ -71,14 +71,12 @@ function createGraph(originalData) {
             return "12pm";
         }
 
-        if(Number(y.hour) === 24) {
+        if(Number(y.hour) === 0) {
             return "12am";
         }
 
         return y.hour > 12 ? (y.hour - 12) + "pm" : y.hour + "am";
     });
-
-    let sizeData = final.map(() => '42');
 
     let colorData = final.map(elem => {
         if(elem.mud === 'happy') {
@@ -98,7 +96,7 @@ function createGraph(originalData) {
         marker: {
 
             color: colorData,
-            size: sizeData,
+            size: '42',
             symbol: "square",
         },
         type: "scatter",
@@ -118,6 +116,8 @@ function createGraph(originalData) {
         count: count,
             layout:{  hovermode: false,
                 showlegend:false,
+                plot_bgcolor: "hsl(252, 5.9, 16.7)"
+
             }
         }
 

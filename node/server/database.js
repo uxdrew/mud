@@ -6,7 +6,7 @@ let MongoClient = require('mongodb');
 
 function getUserDataByName(username) {
 
-    return new Promise(function(resolve, reject) {
+    return new Promise(function(resolve) {
         resolve( MongoClient.connect(url));
 
     }).then(function(db){
@@ -26,7 +26,7 @@ function save(data) {
     data.hour = s[1];
     delete data.timeStamp;
 
-    return new Promise(function(resolve, reject) {
+    return new Promise(function(resolve) {
         resolve( MongoClient.connect(url));
 
     }).then(function(db) {
