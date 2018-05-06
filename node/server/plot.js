@@ -1,7 +1,7 @@
 function createGraph(data, callback) {
 
-    translateData(data, function(err, translatedData) {
-        callback(null,translatedData);
+    translateData(data, function(err, translatedData,count) {
+        callback(null,translatedData,count);
 
     });
 }
@@ -119,8 +119,12 @@ function translateData(originalData, callback) {
 
     let translatedData = [happy];
 
-
-    callback(null,translatedData);
+    let count = {
+        happy: happyCount,
+        sad: sadCount,
+        neutral: neutralCount
+    };
+    callback(null,translatedData,count);
 }
 
 //helper functions

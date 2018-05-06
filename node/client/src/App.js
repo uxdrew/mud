@@ -20,6 +20,9 @@ class App extends Component {
         {this.state.graphs.map(graph =>
 
             <div>
+                <h3>Happy: {graph.count.happy}</h3>
+                <h3>Sad: {graph.count.sad}</h3>
+                <h3>Neutral: {graph.count.neutral}</h3>
                 <Plot
                     data={graph.data}
                     layout={this.state.layout}

@@ -14,8 +14,8 @@ function getUserDataByName(username, callback) {
 
             db.close();
 
-            createGraph(result, function(err,translatedData) {
-                callback(err,translatedData);
+            createGraph(result, function(err,translatedData,count) {
+                callback(err,translatedData,count);
             });
 
         });

@@ -26,11 +26,11 @@ app.get('/graph', function(req,res) {
 
 	console.log("Get request for: " + user);
 
-    getUserDataByName(user, function(err, data) {
+    getUserDataByName(user, function(err, data, count) {
 	    if (err) throw err;
 
         res.end(JSON.stringify([{
-            id: "1",
+            count: count,
             data: data
         }]));
 
