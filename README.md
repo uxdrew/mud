@@ -21,17 +21,8 @@ Let’s nip bad moods in the bud.
 * Jeff Wise
 
 ##
-![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/1.png)
+![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/github_demo.gif)
 *init*
-
-![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/2.png)
-*Prompt from companion app*
-
-![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/4.jpeg | width=100)
-*companion app*
-
-![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/3.png)
-*task complete*
 
 # How To Run
 
