@@ -1,11 +1,10 @@
 import * as messaging from "messaging";
 import { settingsStorage } from "settings";
 
-var ENDPOINT = "https://wonderful-snake-18.localtunnel.me";
+var ENDPOINT = "https://foolish-stingray-79.localtunnel.me";
 
 messaging.peerSocket.onopen = () => {
   console.log("Ready");
-  //sendMessage();
 }
 
 messaging.peerSocket.onerror = (err) => {
@@ -16,12 +15,13 @@ messaging.peerSocket.onmessage = (evt) => {
   console.log('Companion msg received');
   console.log(JSON.stringify(evt.data));
   
-  var querystr = "/?user=" + evt.data['user'] + "&mud=" + evt.data["mud"] + "&timeStamp=" + evt.data["timestamp"] + "&hr=" + evt.data["hr"];
-  console.log("querystr=" + querystr);
-  
-  fetch(ENDPOINT + querystr,
+  fetch(ENDPOINT,
   {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    body: JSON.stringify(evt.data),
+    headers: {
+      'content-type': 'application/json'
+    },
+    method: 'POST'
   })
   .then(function (response) {
     console.log(response);
@@ -39,9 +39,7 @@ messaging.peerSocket.onmessage = (evt) => {
 function sendMessage() {
   if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
     // Send the data to peer as a message
-    messaging.peerSocket.send({
-      sampleData: 123456
-    });
+    
   }
 }
 

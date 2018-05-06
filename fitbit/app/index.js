@@ -13,13 +13,12 @@ clock.granularity = "seconds";
 
 // Get a handle on the <text> element
 const myClock = document.getElementById("myClock");
+
 var gFlower = document.getElementById("g-flower");
 
 var moodPrompt = document.getElementById("mood-prompt-instance");
 
 var checkmark = document.getElementById("checkmark-instance");
-
-//vibration.start("ping");
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
@@ -34,9 +33,9 @@ clock.ontick = (evt) => {
   }
   let mins = util.zeroPad(today.getMinutes());
   let secs = util.zeroPad(today.getSeconds());
+  //rotate flower each second
   gFlower.groupTransform.rotate.angle = secondsToAngle(secs);
   myClock.text = `${hours}:${mins}`;
-  //sendMessage({'msg':'Tick'});
 }
 
 function secondsToAngle(seconds) {
@@ -47,7 +46,6 @@ hrm.onreading = function() {
   // Peek the current sensor values
   //console.log("Current heart rate: " + hrm.heartRate);
   hrLabel.text = hrm.heartRate;
-  //lastValueTimestamp = Date.now();
 }
 
 // Begin monitoring the sensor
@@ -55,7 +53,6 @@ hrm.start();
 
 messaging.peerSocket.onopen = () => {
   console.log("Ready");
-  sendMessage();
 }
 
 messaging.peerSocket.onerror = (err) => {
@@ -65,13 +62,13 @@ messaging.peerSocket.onerror = (err) => {
 var moodPromptEnabled = false;
 
 messaging.peerSocket.onmessage = (evt) => {
-  console.log('App msg received - ' + evt.data.key);
+  //console.log('App msg received - ' + evt.data.key);
   console.log(JSON.stringify(evt.data));
   if(evt.data.key == "moodPrompt")
   {
     console.log("moodPrompt app message received");
-    //moodPrompt.style.display = "inline";
     moodPromptEnabled = true;
+    // show mood prompt
     moodPrompt.animate("enable");
     vibration.start("ping");
   }
@@ -87,16 +84,15 @@ function sendMessage(obj) {
 function moodClick(mood) {
   if(moodPromptEnabled) {
     console.log('moodClick() called - ' + mood);
-    var date = new Date(Date.now())
-    console.log(date);
+    var date = new Date(Date.now());
     var timestamp = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear() + ' ' + date.getHours();
     console.log("timestamp: " + timestamp);
-    sendMessage({ hr: hrLabel.text, mud: mood, user: 'Drew', timestamp: timestamp });
+    sendMessage({ hr: hrLabel.text, mud: mood, user: 'alec', timeStamp: timestamp });
     vibration.start("bump");
+    //dismiss mood prompt
     moodPrompt.animate("disable");
-    //moodPrompt.style.display = "none";
     moodPromptEnabled = false;
-    
+    //start checkmark fade in/fade out
     checkmark.animate("enable");
   }
 }
