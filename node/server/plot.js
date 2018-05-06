@@ -91,18 +91,30 @@ function createGraph(originalData) {
 
     let happy = {
         y: yDataHappy,
-        x: xDataHappy,
+        x: xDataHappy.map(x => x.substring(0, x.lastIndexOf('/'))),
         mode: "markers",
         marker: {
 
             color: colorData,
             size: '42',
-            symbol: "square",
+            symbol: "circle",
+        },
+        type: "scatter",
+    };
+    let happySmaller = {
+        y: yDataHappy,
+        x: xDataHappy.map(x => x.substring(0, x.lastIndexOf('/'))),
+        mode: "markers",
+        marker: {
+
+            color: "hsl(252, 5.9, 16.7)",
+            size: '35',
+            symbol: "circle",
         },
         type: "scatter",
     };
 
-    let moodData = [happy];
+    let moodData = [happy,happySmaller];
 
     let count = {
         happy: happyCount,
@@ -117,13 +129,16 @@ function createGraph(originalData) {
             layout:{  hovermode: false,
                 showlegend:false,
                 title: "Mood Activity",
+                titlefont: {
+                    color: "rgb(249, 243, 243)"
+                },
                 plot_bgcolor: "hsl(252, 5.9, 16.7)",
                 paper_bgcolor: "hsl(252, 5.9, 16.7)",
                 yaxis: {
                     tickfont: {
                         color: "rgb(211, 202, 202)"
                     },
-                    gridwidth: 1,
+                    gridwidth: 0,
                     titlefont: {
                         color: "rgb(252, 246, 246)"
                     },
@@ -171,5 +186,9 @@ Array.prototype.diff = function(a) {
         return a.indexOf(i) < 0;
     });
 };
+
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
 
 module.exports = createGraph;
