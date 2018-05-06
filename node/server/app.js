@@ -1,21 +1,21 @@
 const express = require('express');
 const app = express();
-let port = 8080;
+const port = 8080;
+
 let databaseMethods = require('./database');
 let getUserDataByName = databaseMethods.getUserDataByName;
 let save = databaseMethods.save;
-
-//better JSON parsing
 let bodyParser = require('body-parser');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.post('/', function(req, res) {
 
-	console.log(req.query);
+	console.log(req.body);
 
-    save(req.query);
+    save(req.body);
 
     res.end();
   
@@ -26,14 +26,15 @@ app.get('/graph', function(req,res) {
 
 	console.log("Get request for: " + user);
 
-    getUserDataByName("alec").then(function(result) {
+    getUserDataByName(user).then(function(result) {
         res.end(JSON.stringify(result))
+
     }, function(err) {
         console.log(err);
+
     });
 
 });
-
 
 
 app.listen(port, () => console.log('App listening on port ' + port));

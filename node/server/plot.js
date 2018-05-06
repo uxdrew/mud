@@ -1,14 +1,6 @@
-function createGraph(data, callback) {
-
-    translateData(data, function(err, ret) {
-        callback(null,ret);
-
-    });
-}
 
 
-//take data from the db and format for the graph tool
-function translateData(originalData, callback) {
+function createGraph(originalData) {
 
     //yellow for happy, blue for sad, grey for neutral
     const happyColor =  '(hsl(52, 97, 52)';
@@ -131,7 +123,9 @@ function translateData(originalData, callback) {
 
 
     ];
-    callback(null,ret);
+    return new Promise(function(resolve, reject) {
+        resolve(ret);
+        });
 }
 
 //helper functions
@@ -149,8 +143,5 @@ Array.prototype.diff = function(a) {
         return a.indexOf(i) < 0;
     });
 };
-
-
-
 
 module.exports = createGraph;

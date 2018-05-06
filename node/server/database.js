@@ -2,33 +2,20 @@ const dbName = "mudDatabase";
 const dbCollection = "mudData";
 const url = "mongodb://localhost:27017/";
 let createGraph = require('./plot');
+let MongoClient = require('mongodb');
 
 function getUserDataByName(username) {
 
     return new Promise(function(resolve, reject) {
+        resolve( MongoClient.connect(url));
 
-        connect(function (err, db, dbo) {
-            // do a thing, possibly async, then…
-            let query = {user: username};
+    }).then(function(db){
+        let query = {user : username};
+        return db.db(dbName).collection(dbCollection).find(query).toArray();
 
-            dbo.collection(dbCollection).find(query).toArray(function (err, result) {
-                if (err) throw err;
-
-                db.close();
-
-                createGraph(result, function (err, ret) {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(ret);
-                    }
-                });
-
-            });
-
-        });
+    }).then(function(result) {
+        return createGraph(result);
     });
-
 }
 
 
@@ -39,30 +26,15 @@ function save(data) {
     data.hour = s[1];
     delete data.timeStamp;
 
-    connect(function (err, db, dbo) {
-        dbo.collection(dbCollection).insertOne(data, function (err, res) {
-            if (err) throw err;
+    return new Promise(function(resolve, reject) {
+        resolve( MongoClient.connect(url));
 
-            console.log("1 mud record inserted");
-
-            db.close();
-
-        });
-    });
-}
-
-function connect(callback) {
-    let MongoClient = require('mongodb').MongoClient;
-
-    MongoClient.connect(url, function (err, db) {
-
-        if (err) throw err;
-
-        let dbo = db.db(dbName);
-
-        callback(null, db, dbo);
+    }).then(function(db) {
+        return db.db(dbName).collection(dbCollection).insertOne(data);
+    }).then(function(res) {
+        console.log('1 mud record inserted');
     })
-}
 
+}
 module.exports.getUserDataByName = getUserDataByName;
 module.exports.save = save;
