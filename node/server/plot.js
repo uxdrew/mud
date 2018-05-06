@@ -116,8 +116,36 @@ function createGraph(originalData) {
         count: count,
             layout:{  hovermode: false,
                 showlegend:false,
-                plot_bgcolor: "hsl(252, 5.9, 16.7)"
+                title: "Mood Activity",
+                plot_bgcolor: "hsl(252, 5.9, 16.7)",
+                paper_bgcolor: "hsl(252, 5.9, 16.7)",
+                yaxis: {
+                    tickfont: {
+                        color: "rgb(211, 202, 202)"
+                    },
+                    gridwidth: 1,
+                    titlefont: {
+                        color: "rgb(252, 246, 246)"
+                    },
+                    showgrid: true,
 
+                    gridcolor: "rgb(157, 150, 150)",
+                    showline: false,
+                    autorange: true
+                },
+                xaxis: {
+                    tickfont: {
+                        color: "rgb(247, 243, 243)"
+                    },
+                    titlefont: {
+                        color: "rgb(252, 246, 246)"
+                    },
+                    showgrid: false,
+                    gridcolor: "rgb(245, 239, 239)",
+                    zeroline: false,
+                    showline: false,
+
+                },
             }
         }
 
