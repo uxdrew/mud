@@ -3,7 +3,7 @@ import './App.css';
 import Plot from 'react-plotly.js';
 
 class App extends Component {
-  state = {graphs : [], userId : "Jeff",
+  state = {graphs : [], userId : "alec",
       data: [],
       trace : { x:[1,2,3], y:[1,2,3]}, type: 'scatter',
       mode: 'lines+points',
