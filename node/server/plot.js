@@ -14,12 +14,15 @@ function createGraph(originalData) {
 
             expectedHours.diff(groupedByDate[key].map(x => x.hour))
                 .map(elem => {
-                    originalData.push({
-                    user: originalData[0] ? originalData[0].user : 'no user found',
-                    mud: "missed",
-                    date : key,
-                    hour : elem,
-                });
+                    //todo only for demo....
+                    if(key !== "5/6/2018") {
+                        originalData.push({
+                            user: originalData[0] ? originalData[0].user : 'no user found',
+                            mud: "missed",
+                            date: key,
+                            hour: elem,
+                        });
+                    }
             });
         }
     }
