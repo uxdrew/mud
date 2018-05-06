@@ -7,7 +7,7 @@ let MongoClient = require('mongodb');
 function getUserDataByName(username) {
 
     return new Promise(function(resolve) {
-        resolve( MongoClient.connect(url));
+        resolve(MongoClient.connect(url));
 
     }).then(function(db){
         let query = {user : username};
