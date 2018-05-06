@@ -20,12 +20,12 @@ Let’s nip bad moods in the bud.
 * Alec Paulson
 * Jeff Wise
 
-## One-Tap-App
+## One-Tap-App (fitbitOS)
 <p align="center">
   <img width="400" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/gitbub_demo.gif">
 </p>
 
-## Patient Mood Chart
+## Patient Mood Chart (web)
 
 <p align="center">
   <img width="400" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/chart.png">
