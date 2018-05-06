@@ -10,6 +10,12 @@ function createGraph(data, callback) {
 //take data from the db and format for the graph tool
 function translateData(originalData, callback) {
 
+    //yellow for happy, blue for sad, grey for neutral
+    let happyColor =  '(hsl(52, 97, 52)';
+    let sadColor = 'hsl(210, 79, 30)';
+    let neutralColor = 'hsl(0, 0, 77)';
+
+
     let xDataHappy = [], yDataHappy = [],
          sizeData = [], colorDataHappy = [];
 
@@ -79,10 +85,6 @@ function translateData(originalData, callback) {
         //convert 24 hour time
         let twelveHourTime = element.hour > 12 ? (element.hour - 12) + 'pm' : element.hour + 'am';
 
-        //yellow for happy, blue for sad, grey for neutral
-        let happyColor =  '(hsl(52, 97, 52)';
-        let sadColor = 'hsl(210, 79, 30)';
-        let neutralColor = 'hsl(0, 0, 77)';
 
         if(element.mud === 'happy') {
             colorDataHappy.push(happyColor);
@@ -127,11 +129,19 @@ function translateData(originalData, callback) {
 
     let hrData = [];
     let hrDateTime = [];
+    let hrColorData = [];
 
     final.forEach(function(element) {
-        if(element.mud === 'missed') {
+        if(element.mud === 'happy') {
+            hrColorData.push(happyColor);
+            hrData.push(Number(element.hr));
+            hrDateTime.push(element.date + " " + element.hour);
 
-        } else {
+
+        }
+
+        if (element.mud === 'sad') {
+            hrColorData.push(sadColor);
             hrData.push(Number(element.hr));
             hrDateTime.push(element.date + " " + element.hour);
         }
@@ -144,7 +154,7 @@ function translateData(originalData, callback) {
         mode: "markers",
         marker: {
 
-            color: colorDataHappy,
+            color: hrColorData,
             size: sizeData,
             symbol: "square",
         },
@@ -158,9 +168,6 @@ function translateData(originalData, callback) {
         count: count,
             layout:{  hovermode: false,
                 showlegend:false,
-                // yaxis : {
-                //     mode: "linear"
-                // }
             }
         },
         {data: hrPlot,
@@ -168,7 +175,10 @@ function translateData(originalData, callback) {
         layout:{  hovermode: false,
         showlegend:false,
         yaxis : {
-            mode: "linear"
+            mode: "linear",
+        },
+        xaxis : {
+            showticklabels: false,
         }
     }}
 

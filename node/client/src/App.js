@@ -3,13 +3,7 @@ import './App.css';
 import Plot from 'react-plotly.js';
 
 class App extends Component {
-  state = {graphs : [], userId : "alec",
-      layout:{  hovermode: false,
-                showlegend:false,
-                // yaxis : {
-                //     mode: "linear"
-                // }
-      }};
+  state = {graphs : [], userId : "alec"};
 
   componentDidMount() {
     fetch('/graph?user=' + this.state.userId)
@@ -28,7 +22,7 @@ class App extends Component {
               <ul>
                   <li>Happy: {graph.count.happy}</li>
                   <li>Sad: {graph.count.sad}</li>
-                  <li>Neutral: {graph.count.neutral}</li>
+                  <li>Missed: {graph.count.neutral}</li>
               </ul>
               <Plot
                   data={graph.data}

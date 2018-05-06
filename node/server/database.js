@@ -5,6 +5,7 @@ let createGraph = require('./plot');
 
 function getUserDataByName(username, callback) {
 
+
     connect(function(err,db, dbo) {
 
         let query = { user : username };
