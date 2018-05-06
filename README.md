@@ -20,6 +20,9 @@ Let’s nip bad moods in the bud.
 * Alec Paulson
 * Jeff Wise
 
+##
+![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/1.png)
+
 # How To Run
 
 ## Backend
