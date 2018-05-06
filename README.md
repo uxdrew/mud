@@ -20,7 +20,7 @@ Let’s nip bad moods in the bud.
 * Alec Paulson
 * Jeff Wise
 
-## Demo - One-Tap-App
+## One-Tap-App
 <p align="center">
   <img width="400" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/gitbub_demo.gif">
 </p>
