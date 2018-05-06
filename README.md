@@ -24,6 +24,7 @@ Let’s nip bad moods in the bud.
 ![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/gitbub_demo.gif)
 
 ## Chart
+![Chart](https://github.com/jeffwise26/hackHealth/blob/master/assets/chart.png)
 
 # How To Run
 
