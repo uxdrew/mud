@@ -3,24 +3,32 @@ const dbCollection = "mudData";
 const url = "mongodb://localhost:27017/";
 let createGraph = require('./plot');
 
-function getUserDataByName(username, callback) {
+function getUserDataByName(username) {
 
+    return new Promise(function(resolve, reject) {
 
-    connect(function(err,db, dbo) {
+        connect(function (err, db, dbo) {
+            // do a thing, possibly async, then…
+            let query = {user: username};
 
-        let query = { user : username };
+            dbo.collection(dbCollection).find(query).toArray(function (err, result) {
+                if (err) throw err;
 
-        dbo.collection(dbCollection).find(query).toArray(function(err, result) {
-            if (err) throw err;
+                db.close();
 
-            db.close();
+                createGraph(result, function (err, ret) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(ret);
+                    }
+                });
 
-            createGraph(result, function(err,ret) {
-                callback(err,ret);
             });
 
         });
-    })
+    });
+
 }
 
 

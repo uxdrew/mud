@@ -11,13 +11,9 @@ function createGraph(data, callback) {
 function translateData(originalData, callback) {
 
     //yellow for happy, blue for sad, grey for neutral
-    let happyColor =  '(hsl(52, 97, 52)';
-    let sadColor = 'hsl(210, 79, 30)';
-    let neutralColor = 'hsl(0, 0, 77)';
-
-
-    let xDataHappy = [], yDataHappy = [],
-         sizeData = [], colorDataHappy = [];
+    const happyColor =  '(hsl(52, 97, 52)';
+    const sadColor = 'hsl(210, 79, 30)';
+    const neutralColor = 'hsl(0, 0, 77)';
 
     let sadCount = 0, happyCount = 0, neutralCount = 0;
 
@@ -26,21 +22,17 @@ function translateData(originalData, callback) {
     });
 
 
-    let newData = originalData.groupBy('date');
+    let groupedByDate = originalData.groupBy('date');
 
     let expectedHours =  ["8", "10", "12", "14"];
 
 
     //group by date, then check if any mood recordings
     //were missed, if so, add them as missed data points
-    for (let key in newData) {
-        if (newData.hasOwnProperty(key)) {
+    for (let key in groupedByDate) {
+        if (groupedByDate.hasOwnProperty(key)) {
 
-            let hours = [];
-
-            newData[key].forEach(function(element) {
-                hours.push(element.hour);
-            });
+            let hours = groupedByDate[key].map(x => x.hour);
 
             let missingHours = expectedHours.diff(hours);
 
@@ -80,30 +72,32 @@ function translateData(originalData, callback) {
         })
     });
 
-    final.forEach(function(element) {
+    let xDataHappy = final.map(x => x.date);
 
-        //convert 24 hour time
-        let twelveHourTime = element.hour > 12 ? (element.hour - 12) + 'pm' : element.hour + 'am';
-
-
-        if(element.mud === 'happy') {
-            colorDataHappy.push(happyColor);
-
-        } else if (element.mud === 'sad') {
-            colorDataHappy.push(sadColor);
-
-        } else {
-            colorDataHappy.push(neutralColor);
-
+    let yDataHappy = final.map(y => {
+        if(Number(y.hour) === 12) {
+            return "12pm";
         }
-        xDataHappy.push(element.date);
-        yDataHappy.push(twelveHourTime);
 
-        //add default size for any mood
-       sizeData.push('42');
+        if(Number(y.hour) === 24) {
+            return "12am";
+        }
 
+        return y.hour > 12 ? (y.hour - 12) + "pm" : y.hour + "am";
     });
 
+    let sizeData = final.map(() => '42');
+
+    let colorData = final.map(elem => {
+        if(elem.mud === 'happy') {
+            return happyColor;
+        }
+        if (elem.mud === 'sad') {
+            return sadColor;
+        }
+            return neutralColor;
+
+    });
 
     let happy = {
         y: yDataHappy,
@@ -111,11 +105,10 @@ function translateData(originalData, callback) {
         mode: "markers",
         marker: {
 
-            color: colorDataHappy,
+            color: colorData,
             size: sizeData,
             symbol: "square",
         },
-        name : "Happy " + happyCount,
         type: "scatter",
     };
 
@@ -127,41 +120,6 @@ function translateData(originalData, callback) {
         neutral: neutralCount
     };
 
-    let hrData = [];
-    let hrDateTime = [];
-    let hrColorData = [];
-
-    final.forEach(function(element) {
-        if(element.mud === 'happy') {
-            hrColorData.push(happyColor);
-            hrData.push(Number(element.hr));
-            hrDateTime.push(element.date + " " + element.hour);
-
-
-        }
-
-        if (element.mud === 'sad') {
-            hrColorData.push(sadColor);
-            hrData.push(Number(element.hr));
-            hrDateTime.push(element.date + " " + element.hour);
-        }
-    });
-
-
-    let hrTrace = {
-        y: hrData,
-        x: hrDateTime,
-        mode: "markers",
-        marker: {
-
-            color: hrColorData,
-            size: sizeData,
-            symbol: "square",
-        },
-        type: "scatter",
-    };
-    let hrPlot = [hrTrace];
-
 
     let ret = [
         {data: moodData,
@@ -169,18 +127,8 @@ function translateData(originalData, callback) {
             layout:{  hovermode: false,
                 showlegend:false,
             }
-        },
-        {data: hrPlot,
-        count: count,
-        layout:{  hovermode: false,
-        showlegend:false,
-        yaxis : {
-            mode: "linear",
-        },
-        xaxis : {
-            showticklabels: false,
         }
-    }}
+
 
     ];
     callback(null,ret);

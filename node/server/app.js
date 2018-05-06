@@ -26,12 +26,12 @@ app.get('/graph', function(req,res) {
 
 	console.log("Get request for: " + user);
 
-    getUserDataByName(user, function(err, ret) {
-	    if (err) throw err;
-
-        res.end(JSON.stringify(ret));
-
+    getUserDataByName("alec").then(function(result) {
+        res.end(JSON.stringify(result))
+    }, function(err) {
+        console.log(err);
     });
+
 });
 
 
