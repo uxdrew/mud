@@ -21,15 +21,16 @@ Let’s nip bad moods in the bud.
 * Jeff Wise
 
 ## Demo - One-Tap-App
-![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/gitbub_demo.gif)
+<p align="center">
+  <img width="400" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/gitbub_demo.gif">
+</p>
 
 ## Chart
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/chart.png">
+  <img width="400" height="300" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/chart.png">
 </p>
 
-![Chart](https://github.com/jeffwise26/hackHealth/blob/master/assets/chart.png)
 
 # How To Run
 
