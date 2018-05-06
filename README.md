@@ -6,7 +6,13 @@
 
 ## About
 
-The stigma of mental illness is the biggest barrier to mental health care. We felt passionate about proving a solution to help reduce “social distancing” by making as positive of an experience for people to gain better insight into their well-being and mental health, as fitbit has accomplished for physical fitness. Müd (pronounced mood) is a simple “one-tap app” that captures patient mood, ultimately allowing the patient and healthcare provider insights to spot potential problems early on, by allowing patient mood to be overlaid with additional captured biophysical markers that can then be easily charted to help patients and healthcare providers alike perform a “psychological tuneup”. Let’s nip bad moods in the bud.
+The stigma of mental illness is the biggest barrier to mental health care. 
+
+We felt passionate about proving a solution to help reduce “social distancing” by making as positive of an experience for people to gain better insight into their well-being and mental health, as fitbit has accomplished for physical fitness. 
+
+Müd (pronounced mood) is a simple “one-tap app” that captures patient mood, ultimately allowing the patient and healthcare provider insights to spot potential problems early on, by allowing patient mood to be overlaid with additional captured biophysical markers that can then be easily charted to help patients and healthcare providers alike perform a “psychological tuneup”. 
+
+Let’s nip bad moods in the bud.
 
 ## Team
 
