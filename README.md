@@ -21,7 +21,7 @@ Let’s nip bad moods in the bud.
 * Jeff Wise
 
 ##
-![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/github_demo.gif)
+![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/gitbub_demo.gif)
 *init*
 
 # How To Run
