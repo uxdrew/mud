@@ -27,7 +27,7 @@ Let’s nip bad moods in the bud.
 ![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/2.png)
 *Prompt from companion app*
 
-![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/4.jpeg)
+![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/4.jpeg | width=100)
 *companion app*
 
 ![Clock Face](https://github.com/jeffwise26/hackHealth/blob/master/assets/3.png)
