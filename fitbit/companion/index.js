@@ -1,6 +1,8 @@
 import * as messaging from "messaging";
 import { settingsStorage } from "settings";
 
+var ENDPOINT = "https://polite-wasp-41.localtunnel.me";
+
 messaging.peerSocket.onopen = () => {
   console.log("Ready");
   //sendMessage();
@@ -13,6 +15,25 @@ messaging.peerSocket.onerror = (err) => {
 messaging.peerSocket.onmessage = (evt) => {
   console.log('Companion msg received');
   console.log(JSON.stringify(evt.data));
+  
+  var querystr = "/?user=" + evt.data['user'] + "&mud=" + evt.data["mud"] + "&timeStamp=" + evt.data["timestamp"] + "&hr=" + evt.data["hr"];
+  console.log("querystr=" + querystr);
+  
+  fetch(ENDPOINT + querystr,
+  {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+  })
+  .then(function (response) {
+    console.log(response);
+      response.json()
+      .then(function(data) {
+        //result
+        console.log("Fetch Response: " + JSON.stringify(data));
+      });
+  })
+  .catch(function (err) {
+    console.log("Fetch Error: " + err);
+  });
 }
 
 function sendMessage() {
