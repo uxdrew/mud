@@ -21,9 +21,9 @@ Let’s nip bad moods in the bud.
 
 ## Team
 
-* Andrew Harris
-* Alec Paulson
-* Jeff Wise
+* Andrew Harris (product design)
+* Alec Paulson (developer)
+* Jeff Wise (developer)
 
 ## One-Tap-App (fitbitOS)
 <p align="center">
