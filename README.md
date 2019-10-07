@@ -4,6 +4,12 @@
 
 ## [HackHLTH 2018 Entry](http://www.hackathon.io/mud6)
 
+<p align="center">
+  <img width="300" src="https://github.com/uxdrew/mud/blob/master/assets/hackhealth_onWrist.JPG">
+  <img width="300" src="https://github.com/uxdrew/mud/blob/master/assets/hackhealth_sign.JPG">
+
+</p>
+
 ## About
 
 The stigma of mental illness is the biggest barrier to mental health care. 
