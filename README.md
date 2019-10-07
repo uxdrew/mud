@@ -27,13 +27,13 @@ Let’s nip bad moods in the bud.
 
 ## One-Tap-App (fitbitOS)
 <p align="center">
-  <img width="400" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/gitbub_demo.gif">
+  <img width="400" src="https://github.com/uxdrew/mud/blob/master/assets/gitbub_demo.gif">
 </p>
 
 ## Patient Mood Chart (web)
 
 <p align="center">
-  <img width="600" src="https://github.com/jeffwise26/hackHealth/blob/master/assets/chart.png">
+  <img width="600" src="https://github.com/uxdrew/mud/blob/master/assets/chart.png">
 </p>
 
 
