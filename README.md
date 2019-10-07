@@ -7,7 +7,6 @@
 <p align="center">
   <img width="300" src="https://github.com/uxdrew/mud/blob/master/assets/hackhealth_onWrist.JPG">
   <img width="300" src="https://github.com/uxdrew/mud/blob/master/assets/hackhealth_sign.JPG">
-
 </p>
 
 ## About
@@ -85,3 +84,10 @@ Let’s nip bad moods in the bud.
 * Your mood will be sent to the backend express server and stored in `mongodb` in the `mudDatabase.mudData` collection.
 
 * View a graph of your moods by browsing to the client at `http://localhost:3000`
+
+## Team Images
+<p align="center">
+  <img width="200" src="https://github.com/uxdrew/mud/blob/master/assets/hackhealth_crowd.JPG">
+  <img width="200" src="https://github.com/uxdrew/mud/blob/master/assets/hackhealth_intense.JPG">
+  <img width="200" src="https://github.com/uxdrew/mud/blob/master/assets/hackhealth_working.JPG">
+</p>
