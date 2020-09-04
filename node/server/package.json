@@ -22,7 +22,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
-    "mongodb": "^3.0.7",
+    "mongodb": "^3.1.13",
     "nodemon": "^1.17.3",
     "plotly": "^1.0.6",
     "yarn": "^1.6.0"
